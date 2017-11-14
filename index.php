@@ -2,45 +2,46 @@
 <?php
         #We obtain the data which is contained in the post url on our server.
 
-        $text=$_GET['USSD_STRING'];
-        $phonenumber=$_GET['MSISDN'];
-        $serviceCode=$_GET['serviceCode'];
+        // $text=$_GET['USSD_STRING'];
+        // $phonenumber=$_GET['MSISDN'];
+        // $serviceCode=$_GET['serviceCode'];
 
 
-        $level = explode("*", $text);
-        if (isset($text)) {
+        // $level = explode("*", $text);
+        // if (isset($text)) {
    
-        if ( $text == "" ) {
-            $response="CON Welcome to the registration portal.\nPlease enter you full name";
-        }
 
-        if(isset($level[0]) && $level[0]!="" && !isset($level[1])){
+        // if ( $text == "" ) {
+        //     $response="CON Welcome to the registration portal.\nPlease enter you full name";
+        // }
 
-          $response="CON Hi ".$level[0].", enter your ward name";
+        // if(isset($level[0]) && $level[0]!="" && !isset($level[1])){
+
+        //   $response="CON Hi ".$level[0].", enter your ward name";
              
-        }
-        else if(isset($level[1]) && $level[1]!="" && !isset($level[2])){
-                $response="CON Please enter you national ID number\n"; 
+        // }
+        // else if(isset($level[1]) && $level[1]!="" && !isset($level[2])){
+        //         $response="CON Please enter you national ID number\n"; 
 
-        }
-        else if(isset($level[2]) && $level[2]!="" && !isset($level[3])){
-            //Save data to database
-            $data=array(
-                'phonenumber'=>$phonenumber,
-                'fullname' =>$level[0],
-                'electoral_ward' => $level[1],
-                'national_id'=>$level[2]
-                );
+        // }
+        // else if(isset($level[2]) && $level[2]!="" && !isset($level[3])){
+        //     //Save data to database
+        //     $data=array(
+        //         'phonenumber'=>$phonenumber,
+        //         'fullname' =>$level[0],
+        //         'electoral_ward' => $level[1],
+        //         'national_id'=>$level[2]
+        //         );
 
             
 
-            $response="END Thank you ".$level[0]." for registering.\nWe will keep you updated"; 
-    }
+    //         $response="END Thank you ".$level[0]." for registering.\nWe will keep you updated"; 
+    // }
 
-        header('Content-type: text/plain');
-        echo $response;
+    //     header('Content-type: text/plain');
+    //     echo $response;
 
-    }
+    // }
 
 ?>
 
@@ -87,36 +88,5 @@ else if ( $text == "1" ) {
 header('Content-type: text/plain');
 echo $response;
 // DONE!!!
-
-
-$net = $request->request->get('net');
-$msisdn = $request->request->get('msisdn');
-$type = $request->request->get('type');
-$sessionId = $request->request->get('sessionId');
-$input = $request->request->get('input');
-
-$result = "";
-
-if( $input == "") {
-    // this is the first request
-    $result = "CON Hi welcome, what will you like to do\n";
-    $result .= "1. Create a TaxiTPay® Account \n";
-    $result .= "2. Check TaxiTWallet® Balance";
-
-}
-
-
-else if ( $input == "1" ) {
-    // Business logic for first level response
-    $name = "Damilola";
-    $result = "END Thank you . $name . for registering .\n We will keep you updated";
-
-}
-
-else if($input == "2") {
-    $walletBalance = 20000;
-    $result = "END Your TaxiTWallet® balance is $walletBalance";
-}
-
 ?>
 
